@@ -1,0 +1,8 @@
+<h1> Project: <%= @project.title%> </h1> 
+
+
+<%= render :partial => "/items/item" , :collection => @project.items %> 	
+
+<%=link_to "Add Item", new_item_url(:project_id => @project.id)%> 
+
+<%= button_to "Back to Team", team_url(@project.team_id), method: "get" %> 

@@ -1,0 +1,26 @@
+<%= form_for(@user) do |f| %>
+<div>
+ <p> <%= f.label :name %> </p>
+ <%= f.text_field :name %>
+<div>	
+<br> 
+
+<% Team.all.each do |team| %>
+    <%=
+      check_box_tag(
+        "user[team_ids][]", # input tag name
+        team.id, # value to upload
+        @user.team_ids.include?(team.id), # default on or off?
+        :id => "team_ids_#{team.id}" # HTML id for label
+      )
+     %>
+     
+    <%= label_tag "team_ids_#{team.id}", team.name%>
+    <br>
+  <% end %>
+  
+  <%= hidden_field_tag "user[team_ids][]" %>
+  
+  <%= f.submit %>
+
+<% end %> 

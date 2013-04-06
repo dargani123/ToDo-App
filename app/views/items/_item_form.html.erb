@@ -1,0 +1,26 @@
+<%= form_for(item) do |f| %>
+
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %>
+  <br><br>
+
+   <%= f.label :description, "Description" %> 
+  <br>
+  <%= f.text_area :description %>
+  <br><br>
+
+  <%= f.label :completed, "status" %> 
+  <%= f.select :completed, "finished" => 1, "unfinished" => 0 %> 
+  <br><br>	
+
+  <% if item.project_id %> 
+  	<%= "Project: #{Project.find(@item.project_id).title}" %>
+    <%= f.hidden_field :project_id %> 
+  <% else %>
+  	<%= f.label :project_id, "Project" %> 
+  	<%= f.collection_select :project_id, Project.all, :id, :title %>
+  <% end %> 
+  <br><br>  
+
+  <%= f.submit "#{item.id ? "Update" : "Create"} Item!" %>
+<% end %>

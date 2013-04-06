@@ -1,0 +1,11 @@
+<h1> Team </h1> 
+
+	<% @teams.each do |team| %>
+	<li>
+		<%= link_to team.name, team_url(team)%> 
+	</li>
+	<%end%>
+
+
+	<%= button_to "Create New Team", new_team_url, method: "get" %> 
+

@@ -1,0 +1,12 @@
+
+<h2> <%= @item.title %></h2>
+<ul>
+	<li><%= "Status: #{(@item.completed == 1 ? "Complete" : "Incomplete")}"  %></li>
+	<li><%= "Description: #{@item.description}" %> </li>
+</ul>
+
+<br>
+<br> 
+<% project = Project.find(@item.project_id) %> 
+<%= button_to "Back to #{project.title}",  project_url(project) , :method => "get" %> 
+<%= link_to "Edit Item" , edit_item_url(@item) %>
